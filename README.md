@@ -11,8 +11,8 @@ I used WinForms with C++ to make this so don't expect much :)
 
 Planned Features
 
-Auto-Copy/Paste mode for improved efficiency
-Resizable Window
-Custom Branding
-Ticket tracking addon
-Custom macros addon
+Auto-Copy/Paste mode for improved efficiency,
+Resizable Window,
+Custom Branding,
+Ticket tracking addon,
+Custom macros addon,
