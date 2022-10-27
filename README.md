@@ -7,12 +7,4 @@
 
 Should work flawlessly. There may be a crash here and there when copying the text, but other than that the program should function with no hitches.
 
-I used WinForms with C++ to make this so don't expect much :)
-
-Planned Features
-
-Auto-Copy/Paste mode for improved efficiency,
-Resizable Window,
-Custom Branding,
-Ticket tracking addon,
-Custom macros addon,
+Made with C++/CLI
