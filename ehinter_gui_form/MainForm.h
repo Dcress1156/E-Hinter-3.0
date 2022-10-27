@@ -52,6 +52,12 @@ namespace ehinterguiform {
 	private: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::TextBox^ textBox2;
 	private: System::Windows::Forms::Button^ clipboard_button;
+	private: System::Windows::Forms::CheckBox^ checkBox1;
+	private: System::Windows::Forms::ToolTip^ toolTip1;
+	private: System::Windows::Forms::CheckBox^ auto_paste_checkbox;
+	private: System::Windows::Forms::ToolTip^ auto_paste_tooltip;
+
+
 
 	private: System::ComponentModel::IContainer^ components;
 
@@ -72,6 +78,7 @@ namespace ehinterguiform {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
@@ -79,6 +86,10 @@ namespace ehinterguiform {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->clipboard_button = (gcnew System::Windows::Forms::Button());
+			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
+			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
+			this->auto_paste_checkbox = (gcnew System::Windows::Forms::CheckBox());
+			this->auto_paste_tooltip = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->SuspendLayout();
 			// 
 			// label1
@@ -110,6 +121,7 @@ namespace ehinterguiform {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(666, 25);
 			this->textBox1->TabIndex = 1;
+			this->textBox1->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::textBox1_MouseClick);
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MainForm::textBox1_TextChanged);
 			this->textBox1->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MainForm::textBox1_KeyDown);
 			// 
@@ -182,6 +194,45 @@ namespace ehinterguiform {
 			this->clipboard_button->UseVisualStyleBackColor = true;
 			this->clipboard_button->Click += gcnew System::EventHandler(this, &MainForm::clipboard_button_Click);
 			// 
+			// checkBox1
+			// 
+			this->checkBox1->AutoSize = true;
+			this->checkBox1->BackColor = System::Drawing::Color::Transparent;
+			this->checkBox1->Font = (gcnew System::Drawing::Font(L"Arial", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->checkBox1->ForeColor = System::Drawing::Color::White;
+			this->checkBox1->Location = System::Drawing::Point(555, 68);
+			this->checkBox1->Name = L"checkBox1";
+			this->checkBox1->Size = System::Drawing::Size(119, 26);
+			this->checkBox1->TabIndex = 7;
+			this->checkBox1->Text = L"Auto-Copy";
+			this->toolTip1->SetToolTip(this->checkBox1, L"Will automatically copy the generated Email Hint");
+			this->checkBox1->UseVisualStyleBackColor = false;
+			this->checkBox1->CheckedChanged += gcnew System::EventHandler(this, &MainForm::checkBox1_CheckedChanged);
+			// 
+			// toolTip1
+			// 
+			this->toolTip1->Popup += gcnew System::Windows::Forms::PopupEventHandler(this, &MainForm::toolTip1_Popup);
+			// 
+			// auto_paste_checkbox
+			// 
+			this->auto_paste_checkbox->AutoSize = true;
+			this->auto_paste_checkbox->BackColor = System::Drawing::Color::Transparent;
+			this->auto_paste_checkbox->Font = (gcnew System::Drawing::Font(L"Arial", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->auto_paste_checkbox->ForeColor = System::Drawing::Color::White;
+			this->auto_paste_checkbox->Location = System::Drawing::Point(426, 68);
+			this->auto_paste_checkbox->Name = L"auto_paste_checkbox";
+			this->auto_paste_checkbox->Size = System::Drawing::Size(123, 26);
+			this->auto_paste_checkbox->TabIndex = 8;
+			this->auto_paste_checkbox->Text = L"Auto-Paste";
+			this->toolTip1->SetToolTip(this->auto_paste_checkbox, L"Will automatically paste clipboard data to the enter box");
+			this->auto_paste_checkbox->UseVisualStyleBackColor = false;
+			// 
+			// auto_paste_tooltip
+			// 
+			this->auto_paste_tooltip->Popup += gcnew System::Windows::Forms::PopupEventHandler(this, &MainForm::auto_paste_tooltip_Popup);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 14);
@@ -191,6 +242,8 @@ namespace ehinterguiform {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(690, 250);
+			this->Controls->Add(this->auto_paste_checkbox);
+			this->Controls->Add(this->checkBox1);
 			this->Controls->Add(this->clipboard_button);
 			this->Controls->Add(this->textBox2);
 			this->Controls->Add(this->button1);
@@ -245,6 +298,11 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	String^ ogEmaill_Sys = gcnew String(ogEmail_cpp.data());
 
 	this->textBox2->Text = ogEmaill_Sys;
+
+	if (this->checkBox1->Checked == true)
+	{
+		clipboard_button->PerformClick();
+	}
 }
 
 	   // hinted box
@@ -254,11 +312,34 @@ private: System::Void textBox1_KeyDown(System::Object^ sender, System::Windows::
 	if (e->KeyValue == (int)Keys::Enter)
 	{
 		button1->PerformClick();
+	if (this->checkBox1->Checked == true)
+		{
+			clipboard_button->PerformClick();
+		}
 	}
 }
 
 private: System::Void clipboard_button_Click(System::Object^ sender, System::EventArgs^ e) {
 	Clipboard::SetData(System::Windows::Forms::DataFormats::UnicodeText, this->textBox2->Text);
+}
+
+
+private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+
+}
+private: System::Void toolTip1_Popup(System::Object^ sender, System::Windows::Forms::PopupEventArgs^ e) {
+}
+private: System::Void auto_paste_tooltip_Popup(System::Object^ sender, System::Windows::Forms::PopupEventArgs^ e) {
+}
+private: System::Void textBox1_MouseClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+	if (this->auto_paste_checkbox->Checked == true)
+	{
+		if (this->textBox1->Text->Length == 0)
+		{
+			String^ cp_data = Clipboard::GetText();
+			this->textBox1->Text = cp_data;
+		}
+	}
 }
 
 };
