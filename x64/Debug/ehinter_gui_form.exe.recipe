@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\Tony\Desktop\cpp\ehinter\ehinter_gui_form\x64\Debug\ehinter_gui_form.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\Tony\Desktop\cpp\ehinter\ehinter_gui_form\ehinter_gui_form\Resource.rc</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Tony\Pictures\wallpapers\Untitled-1.png</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

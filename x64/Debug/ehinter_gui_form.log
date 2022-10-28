@@ -1,0 +1,4 @@
+﻿  MainForm.cpp
+C:\Users\Tony\Desktop\cpp\ehinter\ehinter_gui_form\ehinter_gui_form\MainForm.cpp(8,1): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  MainForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  ehinter_gui_form.vcxproj -> C:\Users\Tony\Desktop\cpp\ehinter\ehinter_gui_form\x64\Debug\ehinter_gui_form.exe
