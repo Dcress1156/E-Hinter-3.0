@@ -7,4 +7,6 @@
 
 Should work flawlessly. There may be a crash here and there when copying the text, but other than that the program should function with no hitches.
 
-Made with C++/CLI
+Made with C++/CLI. Why? Because I guess I am a caveman. This probably won't ever be made in any other language because C++ and C are the only languages where I can comfortably work with strings. I attempted an updated version in Rust, but strings in Rust give me migraines, so that probably won't happen. 
+
+It was fine in Python but (slow). Also not fiddling with C#, because Visual Studio is a bloated mess. 
